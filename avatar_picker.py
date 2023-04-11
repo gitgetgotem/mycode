@@ -31,15 +31,14 @@ def bender_score():
         score += 1
     if question3():
         score +=1
-
-    if score == 3:
-        return "Airbender"
-    if score == 2:
-        return "Waterbender"
-    if score == 1:
-        return "Firebender"
-    else:
-        return "Earthbender"
+    
+    bender_types = {
+            3 : "Airbender",
+            2 : "Waterbender",
+            1 : "Firebender",
+            0 : "Earthbender"
+        }
+    return bender_types.get(score, "Invalid score")
 
 def main():
     print("""So you think you have what it takes to bend the elements?
