@@ -1,0 +1,11 @@
+Brainstorming for my final project:
+
+1. Vacation planner: taking input from the user to pull information from the web about different destinations (hotels, resteraunts etc.), using a public API
+
+2. Movie Recommendations: take input from the user about what they are interested in seeing (genre, actors etc.) and returning a suggestion, using a public API
+
+3. Webscraper: Not sure for what yet, but I've heard its hard, and I like challenges.
+
+4. Data Converter: Not sure what type, but seems very real-world applicable.
+
+5. Network Configurer: Take input from the user to automatically configure a network. Seems very real world applicable.
