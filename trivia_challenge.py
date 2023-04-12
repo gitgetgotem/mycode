@@ -28,7 +28,7 @@ for key, value in trivia.items():
 
 def main():
     print(trivia_escaped["question"])
-    user_answer = input(f"A for {trivia_escaped['incorrect_answers'][0]}, B for {trivia_escaped['correct_answer']}, C for {trivia_escaped['incorrect_answers'][1]}, and D for {trivia_escaped['incorrect_answers'][2]}.\n=>")
+    user_answer = input(f"A for {trivia_escaped['incorrect_answers'][0]}\nB for {trivia_escaped['correct_answer']}\nC for {trivia_escaped['incorrect_answers'][1]}\nD for {trivia_escaped['incorrect_answers'][2]}\n=>")
     if user_answer.lower() == "b":
         print("Well done my dear")
     else:
