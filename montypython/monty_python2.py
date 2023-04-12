@@ -5,7 +5,7 @@
 round = 0           # integer round initiated to 0
 while True:        # sets up an infinite loop condition
     round += 1     # increase the round counter
-    print('Finish the movie title, "Monty Python\'s The Life of ______"')
+    print('Finish the movie title, \'Monty Python\'s The Life of ______\'')
     answer = input("Your guess--> ")    # string ans collected from user
     if answer == 'Brian': # logic to check if user gave correct answer
         print('Correct!')

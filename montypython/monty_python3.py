@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """Alta3 Research | RZFeeser
   Conditionals - Life of Brian guessing game without a while True loop."""
 
