@@ -27,7 +27,7 @@ def main():
             rounds += 1
 
         else:
-            print("Correct!")
+            print("Correct")
 
 if __name__ == "__main__":
     main()
