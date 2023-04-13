@@ -33,3 +33,8 @@ class Cheat_Loaded_Dice(Player): # inheritance of Player
                 self.dice[i] += 1
             i += 1
 
+class Weighted_Die(Player):
+    def cheat(self):
+        if self.dice[0] < 3:
+            self.dice[0] = randint(3,6)
+
