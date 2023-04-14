@@ -1,7 +1,7 @@
-#!/bin/usr/env python3
+#!/usr/bin/env python3
 
 def main():
-    bottles = int(input("How many bottles should start on the wall? "))
+    bottles = int(input("How many bottles should start on the wall? ")) + 1
     if bottles > 101:
         print("You should call (800) 839-1686 and get some help")           
     else:
