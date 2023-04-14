@@ -28,8 +28,8 @@ def main():
 
     print('\n\nPeople in Space: ', helmetson['number'])
     people = helmetson['people']
-    print(people)
+    for astro in people:
+        print(f"{astro['name']} is on the {astro['craft']}.")
 
 if __name__ == "__main__":
     main()
-
