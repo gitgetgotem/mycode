@@ -1,10 +1,14 @@
+#!/usr/bin/env python3
+
+from scratch import attributes, stats_prompt
+
+
 class Player:
-    def __init__(self, inventory, rooms):
+    def __init__(self, inventory, rooms, stats):
         self.inventory = inventory
         self.currentRoom = 'Hall'
         self.options = []
-        self.health = []
-        self.ability = []
+        self.stats = stats
 
     def showStatus(self, rooms):
         """determine the current status of the player"""

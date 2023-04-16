@@ -1,30 +1,49 @@
 {
 
     "Hall": {
+
         "south": "Kitchen",
         "east": "Dining Room",
-        "item": "key"
+        "item":
+        {"name": "key", "required_strength": 0, "required_intellect": 1}
+        {"name": "hatchet", "required_strength": 4}
+        
     },
 
     "Kitchen": {
+
         "north": "Hall",
         "item": "monster"
+
     },
 
     "Dining Room": {
+
         "west": "Hall",
         "south": "Dungeon",
-        "item": "potion"
+        "item": 
+        {"name": "potion", "required_strength": 0, "required_intellect": 3}
+        {"name": "knife", "required_strength": 2, "required_intellect": 0}
+
     },
 
     "Garden": {
-        "north": "Dungeon"
+
+        "north": "Dungeon",
+        "item":
+        {"name": "scythe", "required_strength": 3, "required_intellect": 1}
+        {"name": "chainsaw", "required_strength": 3, "required_intellect": 3}
+
     },
 
     "Dungeon": {
+
         "north": "Dining Room",
         "south": "Garden",
-        "item": "hatchet"
+        "item": 
+        {"name": "kingslayer", "required_strength": 6, "required_intellect": 0}
+        {"name": "boomstick", "required_strength": 2, "required_intellect": 6}
+
     }
 
 }
