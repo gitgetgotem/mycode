@@ -10,7 +10,7 @@ with open("data.json", "r") as file:
     rooms = json.load(file)
 
 inventory = []
-stats = attributes()
+stats = dict(zip(["strength", "speed", "intellect"], attributes()))
 
 player = Player(inventory, rooms, stats)
 
@@ -43,7 +43,7 @@ while True:
             print('You can\'t go that way!')
 
     if move[0] == 'get':
-        player.pickup(move[1])
+        player.pickup(rooms, move[1])
 
     if 'item' in rooms[player.currentRoom] and 'monster' in rooms[player.currentRoom]['item']:
         print('A monster has got you... GAME OVER!')
