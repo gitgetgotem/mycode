@@ -4,11 +4,11 @@ from scratch import attributes, stats_prompt
 
 
 class Player:
-    def __init__(self, inventory, rooms, stats=None):
+    def __init__(self, inventory, stats={}):
         self.inventory = inventory
         self.currentRoom = 'Hall'
         self.stats = stats or {"strength": 0, "speed": 0, "intellect": 0}
-        print(self.stats)
+
 
     def showStatus(self, rooms):
         """determine the current status of the player"""
@@ -24,17 +24,21 @@ class Player:
         print("---------------------------")
 
     def pickup(self, rooms, item_name):
-        print(rooms)
         if "item" in rooms[self.currentRoom]:
             for item_dict in rooms[self.currentRoom]["item"]:
                 if item_dict["name"] == item_name:
-                    required_strength = item_dict.get("weight", 0)
-                    required_intellect = item_dict.get("smarts", 0)
+                    required_strength = item_dict.get("required_strength", 0)
+                    required_intellect = item_dict.get("required_intellect", 0)
+
                     if self.stats.get("strength", 0) >= required_strength and self.stats.get("intellect", 0) >= required_intellect:
                         self.inventory.append(item_name)
                         rooms[self.currentRoom]["item"].remove(item_dict)
                         print("You picked up the item. ")
+                        break
+                    else:
+                        print("You are not strong enough to pick up this item. ")
+                        break
             else:
-                print("You are not strong enough to pick up this item. ")
+                print("That item is not in the room. ")
         else:
             print("There is nothing to pickup. ")

@@ -12,7 +12,7 @@ with open("data.json", "r") as file:
 inventory = []
 stats = dict(zip(["strength", "speed", "intellect"], attributes()))
 
-player = Player(inventory, rooms, stats)
+player = Player(inventory, stats=stats)
 
 def showInstructions():
     """Show the game instructions when called"""
