@@ -4,33 +4,30 @@ yes = ["yes", "yeah", "y", "ye", "yeehaw"]
 no = ["no", "nope", "nah", "n"]
 
 strength = 0
-speed = 0
 intellect = 0
 
 print("""You have 10 points to distribute across your Character:
 Strength: 
-Speed:
 Intellect:\n""")
 def stats_prompt():
-    global strength, speed, intellect
+    global strength, intellect
     strength = int(input("Strength: "))
-    speed = int(input("Speed: "))
     intellect = int(input("Intellect: "))
 
 
 def attributes():
-    global strength, speed, intellect
+    global strength, intellect
     stats_prompt()
-    if strength + speed + intellect == 10:
-        return {"strength": strength, "speed": speed, "intellect": intellect}
-    elif strength + speed + intellect > 10:
+    if strength + intellect == 10:
+        return {"strength": strength, "intellect": intellect}
+    elif strength + intellect > 10:
         print("Don't be greedy. You get 10 points to assign.")
         stats_prompt()
         return attributes()
-    elif strength + speed + intellect < 10:
+    elif strength + intellect < 10:
         response = input("Are you sure you want to play on Hard Mode? ")
         if response in yes:
-            return {"strength": strength, "speed": speed, "intellect": intellect}
+            return {"strength": strength, "intellect": intellect}
         elif response in no:
             print("Make sure you use all 10 of your allotted points!\n\n")
             stats_prompt()
@@ -40,14 +37,13 @@ def attributes():
     else:
         print("working on it")
 
-print(attributes())
 
 class Player:
     def __init__(self, inventory, stats):
         self.inventory = inventory
         self.currentRoom = 'Hall'
-        if not all(key in stats for key in ["strength", "speed", "intellect"]):
-            raise ValueError("stats argument must contain strength, speed, and intellect keys")
+        if not all(key in stats for key in ["strength", "intellect"]):
+            raise ValueError("stats argument must contain strength and intellect keys")
         self.stats = stats
 
 
@@ -82,3 +78,24 @@ class Player:
                 print("That item is not in the room. ")
         else:
             print("There is nothing to pickup. ")
+
+
+    def fight(self, monster):
+        """Determine if the player can win"""
+        if monster.item_required in self.inventory:
+            print(f"You defeated the {monster.name} with the {monster.item_required}! ")
+            return True
+        else:
+            print
+
+
+class Monster:
+    def __init__(self, name, required_item):
+        self.name = name
+        self.required_item = required_item
+
+    def defeat(self, player):
+        if self.required_item in player.inventory:
+            print(f"You defeated the {self.name}!")
+        else:
+            print(f"You need a {self.required_item} to defeat the {self.name}.")
