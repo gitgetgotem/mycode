@@ -15,6 +15,10 @@ def stats_prompt():
     intellect = int(input("Intellect: "))
 
 
+def end_game():
+    print("You were eaten! GAME OVER")
+    raise GameOverException()
+
 def attributes():
     global strength, intellect
     stats_prompt()
@@ -58,6 +62,9 @@ class Player:
         if "item" in rooms[self.currentRoom]:
             item_names = [item["name"] for item in rooms[self.currentRoom]["item"]]
             print(f"You see a {', '.join(item_names)}")
+        if "monster" in rooms[self.currentRoom]:
+            monster_name = rooms[self.currentRoom]["monster"].get_name()
+            print(f"You see a {monster_name}! ")
         print("---------------------------")
 
     def pickup(self, rooms, item_name):
@@ -80,22 +87,13 @@ class Player:
             print("There is nothing to pickup. ")
 
 
-    def fight(self, monster):
-        """Determine if the player can win"""
-        if monster.item_required in self.inventory:
-            print(f"You defeated the {monster.name} with the {monster.item_required}! ")
-            return True
-        else:
-            print
 
-
-class Monster:
-    def __init__(self, name, required_item):
-        self.name = name
-        self.required_item = required_item
-
-    def defeat(self, player):
-        if self.required_item in player.inventory:
-            print(f"You defeated the {self.name}!")
-        else:
-            print(f"You need a {self.required_item} to defeat the {self.name}.")
+def slay(monster_info, player):
+    print("Player Inventory:", player.inventory)
+    print("Require Items:", monster_info["required_items"])
+    if all(item in player.inventory for item in monster_info["required_items"]):
+        print(f"You defeated the {monster_info['name']}!")
+        return True
+    else:
+        print(f"You need a {monster_info['required_items']} to defeat the {monster_info['name']}.")
+        return False
