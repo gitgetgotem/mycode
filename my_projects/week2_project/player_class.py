@@ -17,7 +17,6 @@ def stats_prompt():
 
 def end_game():
     print("You were eaten! GAME OVER")
-    raise GameOverException()
 
 def attributes():
     global strength, intellect
@@ -37,9 +36,9 @@ def attributes():
             stats_prompt()
             return attributes()
         else:
-            print("working on it")
+            print("error")
     else:
-        print("working on it")
+        print("error")
 
 
 class Player:
@@ -63,7 +62,7 @@ class Player:
             item_names = [item["name"] for item in rooms[self.currentRoom]["item"]]
             print(f"You see a {', '.join(item_names)}")
         if "monster" in rooms[self.currentRoom]:
-            monster_name = rooms[self.currentRoom]["monster"].get_name()
+            monster_name = rooms[self.currentRoom]["monster"]["name"]
             print(f"You see a {monster_name}! ")
         print("---------------------------")
 
@@ -79,7 +78,7 @@ class Player:
                         print("You picked up the item. ")
                         break
                     else:
-                        print("You are not strong enough to pick up this item. ")
+                        print("You don't have the ability to pick up this item! ")
                         break
             else:
                 print("That item is not in the room. ")
@@ -89,8 +88,6 @@ class Player:
 
 
 def slay(monster_info, player):
-    print("Player Inventory:", player.inventory)
-    print("Require Items:", monster_info["required_items"])
     if all(item in player.inventory for item in monster_info["required_items"]):
         print(f"You defeated the {monster_info['name']}!")
         return True

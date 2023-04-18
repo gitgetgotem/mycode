@@ -3,7 +3,7 @@
 
 import json
 
-from player_class import Player, stats_prompt, attributes, slay
+from player_class import Player, stats_prompt, attributes, slay, end_game
 
 with open("data.json", "r") as file:
     rooms = json.load(file)
@@ -25,11 +25,8 @@ def showInstructions():
 
 showInstructions()
 
-
 while True:
     try:
-        player.showStatus(rooms)
-
         move = ''
         while move == '':
             player.showStatus(rooms)
@@ -42,9 +39,13 @@ while True:
                 player.currentRoom = rooms[player.currentRoom][move[1]]
                 if 'monster' in rooms[player.currentRoom]:
                     monster_info = rooms[player.currentRoom]["monster"]
+                    print(f"You see a {monster_info['name']}!")
                     defeat = slay(monster_info, player)
+                    if defeat:
+                        del(rooms[player.currentRoom]["monster"])
                     if not defeat:
                         end_game()
+                        break
             else:
                 print('You can\'t go that way!')
 
