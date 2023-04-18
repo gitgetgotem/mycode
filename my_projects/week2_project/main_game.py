@@ -3,16 +3,15 @@
 
 import json
 
-from player_class import Player
-from scratch import stats_prompt, attributes
+from player_class import Player, stats_prompt, attributes
 
 with open("data.json", "r") as file:
     rooms = json.load(file)
 
 inventory = []
-stats = dict(zip(["strength", "speed", "intellect"], attributes()))
+stats = attributes()
 
-player = Player(inventory, stats=stats)
+player = Player(inventory, stats)
 
 def showInstructions():
     """Show the game instructions when called"""

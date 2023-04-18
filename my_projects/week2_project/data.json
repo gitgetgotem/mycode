@@ -6,7 +6,7 @@
         "east": "Dining Room",
         "item":[
         {"name": "key", "required_strength": 0, "required_intellect": 1},
-        {"name": "hatchet", "required_strength": 4}
+        {"name": "hatchet", "required_strength": 4, "required_intellect": 1}
         ]
     },
 

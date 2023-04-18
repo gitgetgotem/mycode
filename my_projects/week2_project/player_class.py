@@ -1,13 +1,54 @@
 #!/usr/bin/env python3
 
-from scratch import attributes, stats_prompt
+yes = ["yes", "yeah", "y", "ye", "yeehaw"]
+no = ["no", "nope", "nah", "n"]
 
+strength = 0
+speed = 0
+intellect = 0
+
+print("""You have 10 points to distribute across your Character:
+Strength: 
+Speed:
+Intellect:\n""")
+def stats_prompt():
+    global strength, speed, intellect
+    strength = int(input("Strength: "))
+    speed = int(input("Speed: "))
+    intellect = int(input("Intellect: "))
+
+
+def attributes():
+    global strength, speed, intellect
+    stats_prompt()
+    if strength + speed + intellect == 10:
+        return {"strength": strength, "speed": speed, "intellect": intellect}
+    elif strength + speed + intellect > 10:
+        print("Don't be greedy. You get 10 points to assign.")
+        stats_prompt()
+        return attributes()
+    elif strength + speed + intellect < 10:
+        response = input("Are you sure you want to play on Hard Mode? ")
+        if response in yes:
+            return {"strength": strength, "speed": speed, "intellect": intellect}
+        elif response in no:
+            print("Make sure you use all 10 of your allotted points!\n\n")
+            stats_prompt()
+            return attributes()
+        else:
+            print("working on it")
+    else:
+        print("working on it")
+
+print(attributes())
 
 class Player:
-    def __init__(self, inventory, stats={}):
+    def __init__(self, inventory, stats):
         self.inventory = inventory
         self.currentRoom = 'Hall'
-        self.stats = stats or {"strength": 0, "speed": 0, "intellect": 0}
+        if not all(key in stats for key in ["strength", "speed", "intellect"]):
+            raise ValueError("stats argument must contain strength, speed, and intellect keys")
+        self.stats = stats
 
 
     def showStatus(self, rooms):
@@ -27,10 +68,9 @@ class Player:
         if "item" in rooms[self.currentRoom]:
             for item_dict in rooms[self.currentRoom]["item"]:
                 if item_dict["name"] == item_name:
-                    required_strength = item_dict.get("required_strength", 0)
-                    required_intellect = item_dict.get("required_intellect", 0)
-
-                    if self.stats.get("strength", 0) >= required_strength and self.stats.get("intellect", 0) >= required_intellect:
+                    required_strength = item_dict["required_strength"]
+                    required_intellect = item_dict["required_intellect"]
+                    if self.stats["strength"] >= required_strength and self.stats["intellect"] >= required_intellect:
                         self.inventory.append(item_name)
                         rooms[self.currentRoom]["item"].remove(item_dict)
                         print("You picked up the item. ")

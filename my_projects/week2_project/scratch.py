@@ -27,7 +27,7 @@ def attributes():
     global strength, speed, intellect
     stats_prompt()
     if strength + speed + intellect == 10:
-        return {strength, speed, intellect}
+        return {"strength": strength, "speed": speed, "intellect": intellect}
     elif strength + speed + intellect > 10:
         print("Don't be greedy. You get 10 points to assign.")
         stats_prompt()
@@ -35,7 +35,7 @@ def attributes():
     elif strength + speed + intellect < 10:
         response = input("Are you sure you want to play on Hard Mode? ")
         if response in yes:
-            return {strength, speed, intellect}
+            return {"strength": strength, "speed": speed, "intellect": intellect}
         elif response in no:
             print("Make sure you use all 10 of your allotted points!\n\n")
             stats_prompt()
