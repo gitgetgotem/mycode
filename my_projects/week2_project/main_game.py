@@ -22,6 +22,8 @@ def showInstructions():
       get [item]
     ''')
 
+def help_menu():
+    print('Available commands: go, get, help')
 
 showInstructions()
 
@@ -33,6 +35,10 @@ while True:
             move = input('>')
 
         move = move.lower().split(" ", 1)
+
+        if move[0] in ["h", "help"]:
+            help_menu()
+            continue
 
         if move[0] == 'go':
             if move[1] in rooms[player.currentRoom]:
