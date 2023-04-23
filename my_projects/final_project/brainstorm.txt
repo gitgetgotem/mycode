@@ -1,9 +1,0 @@
-"""Around the World with API's"""
-
-1. Vacation planner: taking input from the user to pull information from the web about different destinations (hotels, resteraunts etc.), using a public API
-
-The main function of this will be taking the users input, after asking them what they like to do, what kind of weather they like, food, language, etc., and then asking them which things they value most in a vacation destination in order to "rank" different itineraries/locations. i.e., they may want warm weather, beaches, and certain cuisine, but maybe it being an english speaking country is a dealbreaker, so sifting through various api data in order to give a comprehensive vacation destination, with some suggestions on things to do there.
-
-3 api's seem necessary here, google places api, openweathermap api, and either yelp fusion or foursquare api. my main function should be asking for input from the user, "ranking" what is most important, but also asking for details about that input: i.e. weather may be most important to them, so maybe assigning a greater weight (maybe create a scoring system and multiplying by a certain amount to based off of how important it is(weather being the most important adds a 1.3 multiplier, being very important adds 1.15 or something like that) but then also using returning suggestions). I think a big challenge will be figuring out how to "add" those scores together. for example, if they want sunny weather, and its most important, but there are no activities around that interest them, then they should not be given the option for that location.
-
-Definetly switching to just google places api and openweather api, the rest is too complicated for me right now
