@@ -1,10 +1,15 @@
 #!/usr/bin/env python3
 
+# Lists of responses checked later in the program
 yes = ["yes", "yeah", "y", "ye", "yeehaw"]
 no = ["no", "nope", "nah", "n"]
 
+# Setting the strength and intellect scores
+
 strength = 0
 intellect = 0
+
+# prompting the user to set their stats
 
 print("""You have 10 points to distribute across your Character:
 Strength: 
@@ -14,9 +19,12 @@ def stats_prompt():
     strength = int(input("Strength: "))
     intellect = int(input("Intellect: "))
 
+# An end game function for when the user is eaten
 
 def end_game():
     print("You were eaten! GAME OVER")
+
+# My attributes function, ensuring the user sets the appropriate stats, or not
 
 def attributes():
     global strength, intellect
@@ -40,6 +48,7 @@ def attributes():
     else:
         print("error")
 
+# Defining my Player class
 
 class Player:
     def __init__(self, inventory, stats):
@@ -49,6 +58,7 @@ class Player:
             raise ValueError("stats argument must contain strength and intellect keys")
         self.stats = stats
 
+# The show status function that is attached to the player class, pulling from the rooms dictionary
 
     def showStatus(self, rooms):
         """determine the current status of the player"""
@@ -65,6 +75,8 @@ class Player:
             monster_name = rooms[self.currentRoom]["monster"]["name"]
             print(f"You see a {monster_name}! ")
         print("---------------------------")
+
+# Running checks of the player stats against the game's items to see if they can be picked up
 
     def pickup(self, rooms, item_name):
         if "item" in rooms[self.currentRoom]:
@@ -85,7 +97,7 @@ class Player:
         else:
             print("There is nothing to pickup. ")
 
-
+# Checking to see if the player can slay the monster
 
 def slay(monster_info, player):
     if all(item in player.inventory for item in monster_info["required_items"]):
