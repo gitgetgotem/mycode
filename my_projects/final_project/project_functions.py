@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
-import requests
+"""All the functions to make our main program run"""
+
 import random
+
+import requests
 
 url = f"https://api.nobelprize.org/v1/laureate.json"
 
@@ -8,16 +11,21 @@ url = f"https://api.nobelprize.org/v1/laureate.json"
 response = requests.get(url).json()
 
 
+# Intro function for the program
 def intro():
+    """Called at run-time"""
     print("""\nHello, and Welcome to my Final Project!\n
 My goal with this project is to provide an easy to use, well-functioning program that allows the user to search
 and learn about Nobel Prizes, and Nobel Prize Laureates. Using the API from the Nobel Prize Organization itself,
 I will provide the user a host of different options for digging through the vast amount of data.\n 
 Enjoy!\n\n""")
 
+
+# Prompt function to take in input from the user
 def prompt():
+    """Called at run-time"""
     while True:
-        prompt_choice = input("""Listed below are the different classifications you may choose from to begin your search:\n 
+        prompt_choice = input("""Listed below are the different options you may choose from to begin your search:\n 
 Enter 1 to search by Laureate Winner Name.
 Enter 2 to search by Year.
 Enter 3 to search by Category.
@@ -34,22 +42,25 @@ Enter q or quit to exit the program.\n
         else:
             return prompt_choice
 
+
+# Gives the user the option to continue searching or quit the program
 def search_again():
     while True:
         choice = input("Would you like to search again? (y/n): ")
         if choice.lower() in ['y', 'yes']:
             return True
-        elif choice.lower() in ['n', 'no']:
+        if choice.lower() in ['n', 'no']:
             print("Exiting program...")
             exit()
         else:
             print("Invalid input. Please enter 'y', 'n', 'yes', or 'no'.")
 
 
+# Allows the user to search by Nobel Prize category
 def cat_search():
     print("You have chosen to start searching by category.\n")
     while True:
-        choice = input("""Let's refine how and what you want to search from the list of options below: \n
+        choice = input("""Let's refine how and what you want to search for from the list of options below: \n
 Enter 1 to display Laureates for Chemistry.
 Enter 2 to display Laureates for Physics.
 Enter 3 to display Laureates for Peace.
@@ -94,10 +105,12 @@ Enter q to quit.\n
             print("Exiting program....")
             exit()
 
+
+# Allows the user to search for Nobel Prize Laureates by year, or range of years
 def year_search():
     print("You have chosen to start searching by Year.\n")
     while True:
-        choice = input("""Let's refine how and what you want to search from the list of options below: \n
+        choice = input("""Let's refine how and what you want to search for from the list of options below: \n
 Enter 1 to search for a specific Year.
 Enter 2 to search for a range of Years.
 Enter q to quit.\n
@@ -156,10 +169,11 @@ Enter q to quit.\n
             print("Invalid choice. Please try again.")
 
 
+# Allows the user to search by Laureate names, or be given a random list of winners
 def laur_name():
     print("You have chosen to start searching by name.\n")
     while True:
-        choice = input("""Let's refine how and what you want to search from the list of options below: \n
+        choice = input("""Let's refine how and what you want to search for from the list of options below: \n
 Enter 1 to search by First name.
 Enter 2 to search by Last name.
 Enter 3 to print a short list of Laureates.

@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
+"""Learning about Nobel Prize Laureates"""
 
-import requests
-import random
 
-from project_functions import intro, prompt, laur_name, year_search, cat_search, search_again
+from project_functions import intro, prompt, laur_name, year_search, cat_search
 
 
 def main():
+    """Called at run-time"""
     intro()
     user_choice = prompt()
     if user_choice == 1:
